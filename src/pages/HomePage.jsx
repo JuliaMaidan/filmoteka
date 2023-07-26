@@ -1,7 +1,6 @@
-import React from "react";
-
-import Hero from "../components/Hero/Hero";
-import Trending from "../components/Trending/Trending";
+import React from 'react';
+import Hero from '../components/Hero/Hero';
+import Trending from '../components/Trending/Trending';
 
 const HomePage = () => {
   return (

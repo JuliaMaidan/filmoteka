@@ -42,7 +42,8 @@ const SharedLayout = () => {
               width="60px"
             />
             <Link className={styles.logo__link} to="/">
-              Film<span>Hub</span>
+              Filmoteka
+              {/* <span>Hub</span> */}
             </Link>
           </div>
           <nav className={styles.nav}>
