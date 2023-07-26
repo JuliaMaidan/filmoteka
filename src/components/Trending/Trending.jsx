@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { getMovies } from '../../services/fetchMovies';
 import styles from './trending.module.scss';
 import Slider from '../Slider/Slider';
@@ -11,13 +11,24 @@ const Trending = () => {
   const [upcoming, setUpcoming] = useState([]);
   const [tvPopular, setTvPopular] = useState([]);
 
-  const movieRequests = [
-    { path: '/trending/all/day', setter: setMovies },
-    { path: '/movie/top_rated', setter: setTopRated },
-    { path: '/movie/now_playing', setter: setNowPlaying },
-    { path: '/movie/upcoming', setter: setUpcoming },
-    { path: '/tv/top_rated', setter: setTvPopular },
-  ];
+  // const movieRequests = [
+  //   { path: '/trending/all/day', setter: setMovies },
+  //   { path: '/movie/top_rated', setter: setTopRated },
+  //   { path: '/movie/now_playing', setter: setNowPlaying },
+  //   { path: '/movie/upcoming', setter: setUpcoming },
+  //   { path: '/tv/top_rated', setter: setTvPopular },
+  // ];
+
+  const movieRequests = useMemo(
+    () => [
+      { path: '/trending/all/day', setter: setMovies },
+      { path: '/movie/top_rated', setter: setTopRated },
+      { path: '/movie/now_playing', setter: setNowPlaying },
+      { path: '/movie/upcoming', setter: setUpcoming },
+      { path: '/tv/top_rated', setter: setTvPopular },
+    ],
+    []
+  );
 
   useEffect(() => {
     async function fetchData() {
