@@ -1,0 +1,60 @@
+.mylist {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+    gap: 23px;
+    position: relative;
+
+    &__wrapper {
+        position: absolute;
+        top: 0;
+    }
+
+    &__item {
+        position: relative;
+        cursor: pointer;
+    }
+
+    &__item:hover &__img {
+        filter: blur(1px);
+        opacity: 0.6;
+    }
+
+    &__item &__btns {
+        display: none;
+    }
+
+    &__item:hover &__btns {
+        display: flex;
+        gap: 15px;
+        position: absolute;
+        top: 40%;
+        left: 41px;
+
+    }
+
+    &__btn {
+        z-index: 100;
+        border: none;
+        border-radius: 50%;
+        width: 54px;
+        height: 54px;
+        background-color: #9e9d9dd8;
+        fill: #ffffff;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &__svg {
+        fill: inherit;
+    }
+
+    &__title{
+        text-align: center;
+        font-size: 14px;
+        opacity: 0.8;
+    }
+}

@@ -1,0 +1,29 @@
+.btns_wrapper {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background-color: transparent;
+    border: 1px solid #fafafa;
+    border-radius: 50%;
+    width: 29px;
+    height: 29px;
+    position: relative;
+    fill: #fafafa;
+opacity: 0.9;
+    &:hover {
+        opacity: 0.6;
+    }
+
+    &__svg {
+        fill: inherit;
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 16px;
+        height: 16px;
+    }
+}

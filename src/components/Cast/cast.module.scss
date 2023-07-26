@@ -1,0 +1,86 @@
+.cast {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: 10px;
+    justify-content: center;
+    color: #fafafa;
+    font-size: 12px;
+    margin-bottom: 28px;
+    padding-left: 0;
+
+    &__wrapper {
+        width: 1351px;
+        margin-inline: auto;
+    }
+
+    &__title {
+        margin-top: 70px;
+        margin-bottom: 24px;
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 0.04rem;
+        color: #fafafa;
+        opacity: 0.9;
+    }
+
+    &__item {
+        border: 1px solid #2e263ad1;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        border-radius: 5px;
+        background-color: #957ead36;
+        height: 296px;
+    }
+
+    &__img {
+        width: 100%;
+        margin-bottom: 4px;
+    }
+
+    &__name {
+        margin: 0;
+        margin-left: 4px;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+
+    &__character {
+        margin-left: 4px;
+        margin-block: 12px 4px;
+        opacity: 0.8;
+    }
+
+    &__hero {
+        margin-left: 4px;
+        margin-block: 0;
+        opacity: 0.8;
+        letter-spacing: 00.02rem;
+    }
+
+    &__more,
+    &__hide {
+        background-color: transparent;
+        border: 1px solid #fafafa;
+        border-radius: 5px;
+        height: 32px;
+        padding-inline: 4px 22px;
+        position: relative;
+        color: #fafafa;
+        fill: #fafafa;
+        opacity: 0.9;
+    }
+
+    &__more {
+        margin-right: 20px;
+    }
+
+    &__svg {
+        fill: inherit;
+        position: absolute;
+        right: 6px;
+        top: 10px;
+    }
+
+    &__btns {
+        margin-bottom: 70px;
+    }
+}

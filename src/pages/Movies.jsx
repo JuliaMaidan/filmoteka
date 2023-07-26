@@ -1,76 +1,45 @@
-import { getSearchedMovies } from '../components/services/fetchMovies';
-import { useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
-import styles from './movies.module.scss';
-import { FaSearch } from 'react-icons/fa';
-import { useNavigate, useLocation } from 'react-router';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from 'react';
+import { useEffect, useState, Suspense } from "react";
+import { getCategories } from "../services/fetchMovies";
+import { Link, Outlet, useParams } from "react-router-dom";
+import styles from "../components/styled/movies.module.scss";
+import NotFound from "../components/NotFound/NotFound";
 
 const Movies = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const [query, setQuery] = useState('');
-  const [movies, setMovies] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const { category } = useParams();
+  console.log(category);
 
   useEffect(() => {
-    const query = searchParams.get('query') ?? '';
-    if (!query) return;
-
-    try {
-      getSearchedMovies(query).then(response => setMovies(response.results));
-    } catch (error) {
-      console.log(error);
-      setSearchParams('');
+    async function fetchCategories() {
+      const data = await getCategories();
+      setCategories(data);
     }
-  }, [searchParams, setSearchParams]);
-
-  const handleChange = e => {
-    setQuery(e.currentTarget.value.toLowerCase());
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    async function fetchMovies() {
-      const data = await getSearchedMovies(query);
-      setMovies(data.results);
-      navigate(`/movies?query=${query}`, { replace: true });
-
-      if (data.results.length === 0) {
-        return toast.error('We don`t have any matches(');
-      }
-    }
-    fetchMovies();
-  };
-
-  const elements = movies.map(({ title, name, id }) => (
-    <li className={styles.item} key={id}>
-      <Link
-        className={styles.link}
-        to={`/movies/${id}`}
-        state={{ from: location }}
-      >
-        {title ?? name}
-      </Link>
-    </li>
-  ));
+    fetchCategories();
+  }, []);
 
   return (
-    <div>
-      <form className={styles.form} action="submit">
-        <input className={styles.input} type="text" onChange={handleChange} />
-        <button className={styles.btn} onClick={handleSubmit}>
-          <Link to={`/movies?query=${query}`}>
-            <FaSearch className={styles.btnLabel} />
-          </Link>
-        </button>
-      </form>
-      <ul className={styles.list}>{elements}</ul>
-      <ToastContainer />
+    <div className={styles.movies}>
+      <h1 className={styles.movies__title}>Search by categories</h1>
+      <ul className={styles.categories}>
+        {categories.map(({ id, name }) => (
+          <li
+            className={
+              category === name
+                ? styles.categories__item_active
+                : styles.categories__item
+            }
+            key={id}
+          >
+            <Link className={styles.categories__link} to={`/movies/${name}`}>
+              {name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+      {!category && <NotFound text="Please, select the category" />}
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

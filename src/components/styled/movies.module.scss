@@ -1,0 +1,53 @@
+.movies {
+    padding-block: 60px 0;
+    width: 1351px;
+    margin: 0 auto;
+    color: #fafafa;
+
+    &__title {
+        font-size: 28px;
+        opacity: 0.9;
+        letter-spacing: 0.04rem;
+        margin-bottom: 28px;
+    }
+}
+
+.categories {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-left: 0;
+
+    &__item {
+        border: 1px solid #2e263ad1;
+        border-radius: 15px;
+        background-color: #957ead61;
+        color: #fafafa;
+        opacity: 0.9;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+            background-color: #957ead43;
+        }
+
+        &_active {
+            background-color: #957ead3f;
+        }
+    }
+
+    &__link {
+        display: block;
+        font-size: 14px;
+        color: inherit;
+        padding-block: 6px 8px;
+        padding-inline: 14px;
+    }
+}
+
+.categories__item_active {
+    border: 1px solid #7b6f8ed1;
+    border-radius: 15px;
+    color: #fafafa;
+    opacity: 0.8;
+    background-color: #3f2f4aba;
+}

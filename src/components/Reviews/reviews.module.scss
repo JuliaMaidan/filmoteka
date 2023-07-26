@@ -1,0 +1,78 @@
+.reviews {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+
+    &__wrapper {
+        width: 1351px;
+        margin: 0 auto;
+        color: #fafafa;
+        margin-bottom: 100px;
+    }
+
+    &__title {
+        margin-top: 70px;
+        margin-bottom: 24px;
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 0.04rem;
+        color: #fafafa;
+        opacity: 0.9;
+    }
+
+    &__item {
+        border: 1px solid #2e263ad1;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        border-radius: 5px;
+        background-color: #957ead36;
+        padding-inline: 24px;
+        padding-block: 14px;
+        position: relative;
+    }
+
+    &__author {
+        font-size: 16px;
+        margin-bottom: 2px;
+        font-weight: bold;
+        letter-spacing: 0.04rem;
+        opacity: 0.9;
+        margin-top: 0;
+    }
+
+    &__text {
+        font-size: 14px;
+        margin-top: 12px;
+        opacity: 0.7;
+        letter-spacing: 0.04rem;
+        line-height: 1.4;
+    }
+
+    &__date {
+        font-size: 12px;
+        opacity: 0.9;
+        letter-spacing: 0.04rem;
+        border-top: 1px solid #fafafa;
+        padding-top: 4px;
+        display: inline;
+    }
+
+    &__btn {
+        position: absolute;
+        right: 24px;
+        bottom: 20px;
+        border: 1px solid #fafafa;
+        background-color: transparent;
+        opacity: 0.9;
+        color: #fafafa;
+        padding: 5px;
+        padding-inline: 10px;
+        font-size: 10px;
+        letter-spacing: 0.04rem;
+        border-radius: 7px;
+
+        &:hover {
+            opacity: 0.6;
+        }
+
+    }
+}

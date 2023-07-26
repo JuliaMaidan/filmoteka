@@ -1,0 +1,33 @@
+// body {
+//     font-family: 'Verdana', sans-serif;
+//     // background: #1C121F;
+//     background: #090d19ed;
+//     margin: 0;
+// }
+
+// ul {
+//     list-style-type: none;
+// }
+
+// a {
+//     text-decoration: none;
+
+//     &.active {
+//         color: #F24B88;
+//         border-bottom: 2px solid;
+//         opacity: 0.9;
+
+//         &:hover {
+//             opacity: 1;
+//         }
+//     }
+// }
+
+.title {
+        margin-top: 20px;
+        font-size: 28px;
+        opacity: 0.9;
+        letter-spacing: 0.04rem;
+        margin-bottom: 40px;
+        color: aquamarine;
+}
