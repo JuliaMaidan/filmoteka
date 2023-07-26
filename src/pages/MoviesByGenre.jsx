@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getMoviesByGenre } from "../services/fetchMovies";
-import PostersList from "../components/PostersList/PostersList";
-import Paginator from "../components/Paginator/Paginator";
-import styles from "../components/styled/moviesByGenre.module.scss";
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getMoviesByGenre } from '../services/fetchMovies';
+import PostersList from '../components/PostersList/PostersList';
+import Paginator from '../components/Paginator/Paginator';
+import styles from '../components/styled/moviesByGenre.module.scss';
 
 const MoviesByGenre = () => {
   const { category } = useParams();
@@ -11,7 +11,7 @@ const MoviesByGenre = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  const [prevCategory, setPrevCategory] = useState("");
+  const [prevCategory, setPrevCategory] = useState('');
 
   useEffect(() => {
     setPrevCategory(category);
@@ -24,7 +24,7 @@ const MoviesByGenre = () => {
         setMovies(moviesData.results);
         setTotalPages(moviesData.total_pages);
       } catch (error) {
-        console.log("Помилка при отриманні фільмів за жанром:", error);
+        console.log('Помилка при отриманні фільмів за жанром:', error);
       }
     };
 
@@ -38,7 +38,7 @@ const MoviesByGenre = () => {
   const handlePageChange = (event, page) => {
     setCurrentPage(page);
   };
-
+  console.log(totalPages);
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Genre: {category}</h2>

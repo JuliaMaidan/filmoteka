@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from "react";
-import { getMovieVideos } from "../../services/fetchMovies";
-import ReactPlayer from "react-player";
-import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { useState, useEffect } from 'react';
+import { getMovieVideos } from '../../services/fetchMovies';
+import ReactPlayer from 'react-player';
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
-import styles from "./trailers.module.scss";
+import styles from './trailers.module.scss';
 
 const Trailers = ({ id }) => {
   const [videos, setVideos] = useState([]);
@@ -15,7 +15,7 @@ const Trailers = ({ id }) => {
         const movieVideos = await getMovieVideos(id);
         setVideos(movieVideos.results);
       } catch (error) {
-        console.log("Помилка при отриманні відео для фільму:", error);
+        console.log('Помилка при отриманні відео для фільму:', error);
       }
     };
     fetchMovieVideos();
@@ -50,7 +50,7 @@ const Trailers = ({ id }) => {
         <button
           className={styles.video__btn}
           onClick={() =>
-            setCurrentVideoIndex((prevIndex) =>
+            setCurrentVideoIndex(prevIndex =>
               prevIndex > 0 ? prevIndex - 1 : videos.length - 1
             )
           }
@@ -60,7 +60,7 @@ const Trailers = ({ id }) => {
         <button
           className={styles.video__btn}
           onClick={() =>
-            setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length)
+            setCurrentVideoIndex(prevIndex => (prevIndex + 1) % videos.length)
           }
         >
           <AiOutlineRight size={36} className={styles.video__svg} />

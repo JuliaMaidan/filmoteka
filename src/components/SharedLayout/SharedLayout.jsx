@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom";
-import { Suspense, useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
-import logo from "../../images/logo/cinema.png";
-import styles from "./sharedLayout.module.scss";
-import { SlArrowUp } from "react-icons/sl";
-import Loader from "../Loader/Loader";
+import { Outlet } from 'react-router-dom';
+import { Suspense, useState, useEffect } from 'react';
+import { NavLink, Link } from 'react-router-dom';
+import logo from '../../images/logo/cinema.png';
+import styles from './sharedLayout.module.scss';
+import { SlArrowUp } from 'react-icons/sl';
+// import Loader from "../Loader/Loader";
 
 const SharedLayout = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,15 +19,15 @@ const SharedLayout = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
   return (
