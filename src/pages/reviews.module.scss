@@ -1,0 +1,25 @@
+.author {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.text {
+    padding-bottom: 8px;
+    border-bottom: 2mm ridge rgba(235, 212, 241, 0.162);
+}
+
+.collapse {
+    padding: 6px;
+    font-size: 12px;
+    border-radius: 10px;
+    border: 1.5px solid rgb(124, 12, 109);
+    transition: all 300ms ease-in-out;
+    background-color: transparent;
+    color: rgb(124, 12, 109);
+
+    &:hover {
+        background-color: rgb(124, 12, 109);
+        color: white;
+        transform: scale(1.1);
+    }
+}
