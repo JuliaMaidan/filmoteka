@@ -1,13 +1,30 @@
 .container {
     padding-block: 20px 40px;
-    width: 1351px;
     margin: 0 auto;
     color: #fafafa;
+
+    @media (min-width: 768px) {
+        padding-block: 20px 40px;
+    }
+
+    @media (min-width: 1400px) {
+        padding-block: 20px 40px;
+        width: 1351px;
+    }
 }
 
 .title {
-    font-size: 20px;
+    font-size: 16px;
     opacity: 0.8;
     letter-spacing: 0.04rem;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
+
+    @media (min-width: 768px) {
+        font-size: 18px;
+    }
+
+    @media (min-width: 1400px) {
+        font-size: 20px;
+        margin-bottom: 28px;
+    }
 }

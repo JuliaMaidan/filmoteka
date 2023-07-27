@@ -1,18 +1,21 @@
-import styles from "./hero.module.scss";
+import styles from './hero.module.scss';
 
 const Hero = () => {
+  let text = '';
+
+  if (window.innerWidth < 768) {
+    text = 'Stay up-to-date with the latest releases and discover hidden gems.';
+  } else if (window.innerWidth < 1400) {
+    text =
+      'Stay up-to-date with the latest releases and discover hidden gems. Start your cinematic journey today!';
+  } else {
+    text =
+      'Enjoy an immersive experience as you browse through detailed synopses, cast information, and trailers. Stay up-to-date with the latest releases and discover hidden gems. Start your cinematic journey today!';
+  }
   return (
     <div className={styles.hero}>
       <div className={styles.hero__wrapper}>
-        {/* <h1 className={styles.hero__title}>Welcome to movies world</h1> */}
-        <p className={styles.hero__desc}>
-          {/* We offer a captivating movie overview, providing a diverse collection
-          of films to explore. With an extensive selection of genres, you can
-          easily find tour favorite movies. */}
-          Enjoy an immersive experience as you browse through detailed synopses,
-          cast information, and trailers. Stay up-to-date with the latest
-          releases and discover hidden gems. Start your cinematic journey today!
-        </p>
+        <p className={styles.hero__desc}>{text}</p>
       </div>
     </div>
   );

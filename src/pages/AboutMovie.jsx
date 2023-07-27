@@ -1,22 +1,22 @@
-import { useParams } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
-import { getMovieDetails, getSimilar } from "../services/fetchMovies";
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
-import { BsPlusLg, BsFillPlayFill } from "react-icons/bs";
-import { AiOutlineHeart } from "react-icons/ai";
-import { addToFavorites, addToWatchingList } from "../services/buttonsLogic";
-import Cast from "../components/Cast/Cast";
-import Trailers from "../components/Trailers/Trailers";
-import Reviews from "../components/Reviews/Reviews";
-import PostersList from "../components/PostersList/PostersList";
-import styles from "../components/styled/aboutMovie.module.scss";
-import Loader from "../components/Loader/Loader";
+import { useParams } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { getMovieDetails, getSimilar } from '../services/fetchMovies';
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { BsPlusLg, BsFillPlayFill } from 'react-icons/bs';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { addToFavorites, addToWatchingList } from '../services/buttonsLogic';
+import Cast from '../components/Cast/Cast';
+import Trailers from '../components/Trailers/Trailers';
+import Reviews from '../components/Reviews/Reviews';
+import PostersList from '../components/PostersList/PostersList';
+import styles from '../components/styled/aboutMovie.module.scss';
+import Loader from '../components/Loader/Loader';
 
 const AboutMovie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef(null);
   const [similar, setSimilar] = useState([]);
 
@@ -25,9 +25,9 @@ const AboutMovie = () => {
       try {
         const movieData = await getMovieDetails(id);
         setMovie(movieData);
-        setIsLoading(true);
+        setIsLoading(false);
       } catch (error) {
-        console.log("Помилка при отриманні інформації про фільм:", error);
+        console.log('Помилка при отриманні інформації про фільм:', error);
       }
     };
     fetchMovieDetails();
@@ -36,9 +36,11 @@ const AboutMovie = () => {
   useEffect(() => {
     const fetchSimilar = async () => {
       try {
+        setIsLoading(true);
         const similar = await getSimilar(id);
         setSimilar(similar.results);
         console.log(similar.results);
+        setIsLoading(false);
       } catch (error) {
         console.logh(error);
       }
@@ -48,8 +50,8 @@ const AboutMovie = () => {
 
   const handlePlayButtonClick = () => {
     videoRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
+      behavior: 'smooth',
+      block: 'start',
     });
   };
 
@@ -67,15 +69,15 @@ const AboutMovie = () => {
     budget,
   } = movie;
 
-  if (!isLoading) {
+  if (isLoading) {
     return <Loader />;
   }
   const url = `https://image.tmdb.org/t/p/w780/`;
   const date = release_date;
-  const year = date.split("-")[0];
+  const year = date.split('-')[0];
 
   const releaseDate = release_date;
-  const parts = releaseDate.split("-");
+  const parts = releaseDate.split('-');
   const formattedDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
 
   const minutes = runtime;
@@ -88,85 +90,87 @@ const AboutMovie = () => {
 
   return (
     <div>
+      {isLoading && <Loader />}
       <div
         className={styles.container}
         style={{
           backgroundImage: [
-            "radial-gradient(circle, rgba(144,135,152,0.61) 0%, rgba(144,135,152,0.5) 100%)",
+            'radial-gradient(circle, rgba(144,135,152,0.61) 0%, rgba(144,135,152,0.5) 100%)',
             `url(${url}${backdrop_path})`,
           ],
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
         }}
       >
         <div className={styles.backdrop}>
-          <div>
-            <img
-              className={styles.poster}
-              src={`${url}${poster_path}`}
-              alt=""
-            />
-            <p className={styles.budget}>Budget: {budget}$</p>
-          </div>
-
-          <div className={styles.info_wrapper}>
-            <p className={styles.title}>
-              {title} ({year})
-            </p>
-            <div className={styles.date_wrapper}>
-              <p className={styles.date}>{formattedDate}</p>
-              <p className={styles.runtime}>{formattedTime}</p>
+          <div className={styles.backdrop_wrapper}>
+            <div>
+              <img
+                className={styles.poster}
+                src={`${url}${poster_path}`}
+                alt=""
+              />
+              <p className={styles.budget}>Budget: {budget}$</p>
             </div>
-            <div className={styles.wrapper}>
-              <div className={styles.circle}>
-                <CircularProgressbar
-                  value={rating}
-                  text={`${rating}%`}
-                  styles={buildStyles({
-                    pathColor: "#f24b88f8",
-                    textColor: "#f24b88f8",
-                  })}
-                />
+            <div className={styles.info_wrapper}>
+              <p className={styles.title}>
+                {title} ({year})
+              </p>
+              <div className={styles.date_wrapper}>
+                <p className={styles.date}>{formattedDate}</p>
+                <p className={styles.runtime}>{formattedTime}</p>
               </div>
-              <p className={styles.rating}>Vote rating</p>
-              <button className={styles.play} onClick={handlePlayButtonClick}>
-                <BsFillPlayFill className={styles.play_svg} />
-                Trailer
-              </button>
-              <div className={styles.btns_wrapper}>
-                <button
-                  className={styles.btn}
-                  onClick={() => addToWatchingList(Number(id))}
-                >
-                  <BsPlusLg className={styles.btn__svg} />
+              <div className={styles.wrapper}>
+                <div className={styles.circle}>
+                  <CircularProgressbar
+                    value={rating}
+                    text={`${rating}%`}
+                    styles={buildStyles({
+                      pathColor: '#f24b88f8',
+                      textColor: '#f24b88f8',
+                    })}
+                  />
+                </div>
+                <p className={styles.rating}>Vote rating</p>
+                <button className={styles.play} onClick={handlePlayButtonClick}>
+                  <BsFillPlayFill className={styles.play_svg} />
+                  Trailer
                 </button>
-                <button
-                  className={styles.btn}
-                  onClick={() => addToFavorites(Number(id))}
-                >
-                  <AiOutlineHeart className={styles.btn__svg} />
-                </button>
+                <div className={styles.btns_wrapper}>
+                  <button
+                    className={styles.btn}
+                    onClick={() => addToWatchingList(Number(id))}
+                  >
+                    <BsPlusLg className={styles.btn__svg} />
+                  </button>
+                  <button
+                    className={styles.btn}
+                    onClick={() => addToFavorites(Number(id))}
+                  >
+                    <AiOutlineHeart className={styles.btn__svg} />
+                  </button>
+                </div>
               </div>
+              <i className={styles.tagline}>{tagline}</i>
+              <p className={styles.desc}>Overview:</p>
+              <p className={styles.overview}>{overview}</p>
+              <p className={styles.desc}>Genres:</p>
+              <ul className={styles.genres}>
+                {genres.map(({ id, name }) => (
+                  <li className={styles.genres__item} key={id}>
+                    {name}
+                  </li>
+                ))}
+              </ul>
+              <p className={styles.desc}>Production countries</p>
+              <ul className={styles.genres}>
+                {production_countries.map(({ name }) => (
+                  <li className={styles.genres__item} key={name}>
+                    {name}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <i className={styles.tagline}>{tagline}</i>
-            <p className={styles.desc}>Overview:</p>
-            <p className={styles.overview}>{overview}</p>
-            <p className={styles.desc}>Genres:</p>
-            <ul className={styles.genres}>
-              {genres.map(({ id, name }) => (
-                <li className={styles.genres__item} key={id}>
-                  {name}
-                </li>
-              ))}
-            </ul>
-            <p className={styles.desc}>Production countries</p>
-            <ul className={styles.genres}>
-              {production_countries.map(({ name }) => (
-                <li className={styles.genres__item} key={name}>
-                  {name}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>

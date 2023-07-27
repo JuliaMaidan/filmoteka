@@ -1,21 +1,50 @@
 .movies {
     padding-block: 60px 0;
-    width: 1351px;
+    padding-inline: 20px;
     margin: 0 auto;
     color: #fafafa;
 
+    @media (min-width: 768px) {
+        padding-block: 60px 0;
+        padding-inline: 30px;
+    }
+
+    @media (min-width: 1400px) {
+        padding-block: 60px 0;
+        padding-inline: 0;
+        width: 1351px;
+    }
+
     &__title {
-        font-size: 28px;
+        font-size: 18px;
         opacity: 0.9;
         letter-spacing: 0.04rem;
-        margin-bottom: 28px;
+        margin-bottom: 12px;
+
+        @media (min-width: 768px) {
+            font-size: 20px;
+            margin-bottom: 28px;
+        }
+    
+        @media (min-width: 1400px) {
+            font-size: 28px;
+        }
     }
 }
 
 .categories {
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5px;
     padding-left: 0;
+    margin: 0;
+
+    @media (min-width: 768px) {
+        gap: 7px;
+    }
+
+    @media (min-width: 1400px) {
+        gap: 10px;
+    }
 
     &__item {
         border: 1px solid #2e263ad1;
@@ -37,10 +66,22 @@
 
     &__link {
         display: block;
-        font-size: 14px;
+        font-size: 10px;
         color: inherit;
-        padding-block: 6px 8px;
-        padding-inline: 14px;
+        padding-block: 4px 5px;
+        padding-inline: 8px;
+
+        @media (min-width: 768px) {
+            font-size: 12px;
+            padding-block: 5px 6px;
+            padding-inline: 14px;
+        }
+    
+        @media (min-width: 1400px) {
+            font-size: 14px;
+            padding-block: 6px 8px;
+            padding-inline: 14px;
+        }
     }
 }
 

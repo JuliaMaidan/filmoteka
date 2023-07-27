@@ -1,7 +1,7 @@
-import styles from "./posterList.module.scss";
-import { Link } from "react-router-dom";
-import { BsInfo } from "react-icons/bs";
-import { AiFillStar } from "react-icons/ai";
+import styles from './posterList.module.scss';
+import { Link } from 'react-router-dom';
+import { BsInfo } from 'react-icons/bs';
+import { AiFillStar } from 'react-icons/ai';
 
 const PostersList = ({ movies }) => {
   return (
@@ -13,7 +13,7 @@ const PostersList = ({ movies }) => {
               <img
                 src={`https://image.tmdb.org/t/p/w780/${poster_path}`}
                 alt={title}
-                height="300"
+                // height="300"
                 className={styles.movies__img}
               />
               <p className={styles.movies__name}>{title}</p>

@@ -1,23 +1,30 @@
-import { Stack, Pagination, createTheme, ThemeProvider } from "@mui/material";
-import styles from "./paginator.module.scss";
+import { Stack, Pagination, createTheme, ThemeProvider } from '@mui/material';
+import styles from './paginator.module.scss';
 const Paginator = ({ currentPage, handlePageChange, count }) => {
+  let size = '';
+  if (window.innerWidth < 768) {
+    size = 'medium';
+  } else {
+    size = 'large';
+  }
+
   const theme = createTheme({
     components: {
       MuiPagination: {
         styleOverrides: {
           root: {
-            display: "flex",
-            justifyContent: "center",
-            margin: "auto",
-            "& .MuiPaginationItem-root": {
-              color: "#fafafa",
+            display: 'flex',
+            justifyContent: 'center',
+            margin: 'auto',
+            '& .MuiPaginationItem-root': {
+              color: '#fafafa',
               opacity: 0.9,
-              borderColor: "#957ead36",
+              borderColor: '#957ead36',
             },
-            "& .MuiPaginationItem-page.Mui-selected": {
-              backgroundColor: "#957ead36",
-              borderColor: "#fafafa7e",
-              color: "#fafafa",
+            '& .MuiPaginationItem-page.Mui-selected': {
+              backgroundColor: '#957ead36',
+              borderColor: '#fafafa7e',
+              color: '#fafafa',
             },
           },
         },
@@ -34,7 +41,7 @@ const Paginator = ({ currentPage, handlePageChange, count }) => {
             onChange={handlePageChange}
             variant="outlined"
             color="secondary"
-            size="large"
+            size={size}
           />
         </Stack>
       </ThemeProvider>

@@ -9,15 +9,7 @@ const Trending = () => {
   const [topRated, setTopRated] = useState([]);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [upcoming, setUpcoming] = useState([]);
-  const [tvPopular, setTvPopular] = useState([]);
-
-  // const movieRequests = [
-  //   { path: '/trending/all/day', setter: setMovies },
-  //   { path: '/movie/top_rated', setter: setTopRated },
-  //   { path: '/movie/now_playing', setter: setNowPlaying },
-  //   { path: '/movie/upcoming', setter: setUpcoming },
-  //   { path: '/tv/top_rated', setter: setTvPopular },
-  // ];
+  // const [tvPopular, setTvPopular] = useState([]);
 
   const movieRequests = useMemo(
     () => [
@@ -25,7 +17,7 @@ const Trending = () => {
       { path: '/movie/top_rated', setter: setTopRated },
       { path: '/movie/now_playing', setter: setNowPlaying },
       { path: '/movie/upcoming', setter: setUpcoming },
-      { path: '/tv/top_rated', setter: setTvPopular },
+      // { path: '/tv/top_rated', setter: setTvPopular },
     ],
     []
   );
@@ -68,12 +60,12 @@ const Trending = () => {
         addToFavorites={addToFavorites}
         addToWatchingList={addToWatchingList}
       />
-      <Slider
+      {/* <Slider
         movies={tvPopular}
         title="Top rated series"
         addToFavorites={addToFavorites}
         addToWatchingList={addToWatchingList}
-      />
+      /> */}
       <Slider
         movies={topRated}
         title="Top rated movies"

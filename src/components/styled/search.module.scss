@@ -51,4 +51,12 @@
     &__svg {
         fill: #fafafa;
     }
+
+    &__error {
+        position: absolute;
+        font-size: 12px;
+        top: 46px;
+        left: 18px;
+        color: #e38181;
+    }
 }

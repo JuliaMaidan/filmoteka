@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import styles from "../Trending/trending.module.scss";
-import { AiFillStar, AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-import Buttons from "../Buttons/Buttons";
-// import { useNavigate } from "react-router-dom";
-// import { BsPlusLg, BsThreeDots } from "react-icons/bs";
-// import { AiOutlineHeart } from "react-icons/ai";
+import React, { useEffect, useState } from 'react';
+// import styles from '../Trending/trending.module.scss';
+import { AiFillStar, AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
+import Buttons from '../Buttons/Buttons';
+import styles from './slider.module.scss';
 
 const MovieSlider = ({ movies, title, addToFavorites, addToWatchingList }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -12,15 +10,54 @@ const MovieSlider = ({ movies, title, addToFavorites, addToWatchingList }) => {
   const totalPages = Math.ceil(movies.length / moviesPerPage);
 
   const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
+    setCurrentPage(prevPage => prevPage + 1);
   };
 
   const handlePreviousPage = () => {
-    setCurrentPage((prevPage) => prevPage - 1);
+    setCurrentPage(prevPage => prevPage - 1);
   };
 
   const startIndex = currentPage * moviesPerPage;
   const visibleMovies = movies.slice(startIndex, startIndex + moviesPerPage);
+  // const [currentPage, setCurrentPage] = useState(0);
+  // const [moviesPerPage, setMoviesPerPage] = useState(4);
+  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setWindowWidth(window.innerWidth);
+  //   };
+
+  //   handleResize(); // Викликаємо при монтуванні компонента, щоб встановити початкове значення
+  //   window.addEventListener('resize', handleResize); // Додаємо обробник події 'resize'
+
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize); // Видаляємо обробник події 'resize' при демонтажі компонента
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   if (windowWidth < 768) {
+  //     setMoviesPerPage(1);
+  //   } else if (windowWidth < 1400) {
+  //     setMoviesPerPage(2);
+  //   } else {
+  //     setMoviesPerPage(4);
+  //   }
+  // }, [windowWidth]);
+
+  // const totalPages = Math.ceil(movies.length / moviesPerPage);
+
+  // const handleNextPage = () => {
+  //   setCurrentPage(prevPage => prevPage + 1);
+  // };
+
+  // const handlePreviousPage = () => {
+  //   setCurrentPage(prevPage => prevPage - 1);
+  // };
+
+  // const startIndex = currentPage * moviesPerPage;
+  // const visibleMovies = movies.slice(startIndex, startIndex + moviesPerPage);
 
   return (
     <div>

@@ -1,36 +1,36 @@
-import { useState, useEffect } from "react";
-import { getMovieDetails } from "../services/fetchMovies";
-import styles from "../components/styled/myList.module.scss";
-import NotFound from "../components/NotFound/NotFound";
-import WatchingList from "../components/WatchingList/WatchingList";
+import { useState, useEffect } from 'react';
+import { getMovieDetails } from '../services/fetchMovies';
+import styles from '../components/styled/myList.module.scss';
+import NotFound from '../components/NotFound/NotFound';
+import WatchingList from '../components/WatchingList/WatchingList';
 
 const MyList = () => {
   const [watchingList, setWatchingList] = useState([]);
   const [watchingListUpdated, setWatchingListUpdated] = useState(false);
 
   useEffect(() => {
-    const myList = localStorage.getItem("watchingList");
+    const myList = localStorage.getItem('watchingList');
     const myListIds = myList ? JSON.parse(myList) : [];
 
     const fetchWatchingList = async () => {
       try {
         const movies = await Promise.all(
-          myListIds.map((id) => getMovieDetails(id))
+          myListIds.map(id => getMovieDetails(id))
         );
         setWatchingList(movies);
       } catch (error) {
-        console.log("Помилка при отриманні улюблених фільмів:", error);
+        console.log('Помилка при отриманні улюблених фільмів:', error);
       }
     };
     fetchWatchingList();
   }, [watchingListUpdated]);
 
-  const onDeleteClick = (id) => {
-    const myList = localStorage.getItem("watchingList");
+  const onDeleteClick = id => {
+    const myList = localStorage.getItem('watchingList');
     const myListIds = myList ? JSON.parse(myList) : [];
-    const updatedList = myListIds.filter((movieId) => movieId !== parseInt(id));
+    const updatedList = myListIds.filter(movieId => movieId !== parseInt(id));
     setWatchingList(updatedList);
-    localStorage.setItem("watchingList", JSON.stringify(updatedList));
+    localStorage.setItem('watchingList', JSON.stringify(updatedList));
     console.log(id);
 
     setWatchingListUpdated(!watchingListUpdated);

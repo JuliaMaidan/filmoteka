@@ -1,8 +1,10 @@
 // import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
-import styles from "./cast.module.scss";
-import { getCast } from "../../services/fetchMovies";
+import { useState, useEffect } from 'react';
+import { BiSolidDownArrow, BiSolidUpArrow } from 'react-icons/bi';
+import styles from './cast.module.scss';
+import { getCast } from '../../services/fetchMovies';
+// import Avatar from 'react-avatar-generator';
+import avatar from '../../images/placeholder-person.png';
 
 const Cast = ({ id }) => {
   const [cast, setCast] = useState([]);
@@ -32,7 +34,7 @@ const Cast = ({ id }) => {
         const cast = await getCast(id);
         setCast(cast.cast);
       } catch (error) {
-        console.log("Помилка при отриманні cast:", error);
+        console.log('Помилка при отриманні cast:', error);
       }
     };
     fetchCast();
@@ -46,12 +48,21 @@ const Cast = ({ id }) => {
           .slice(0, visibleHeroes)
           .map(({ name, profile_path, character, id }) => (
             <li className={styles.cast__item} key={id}>
-              <img
-                className={styles.cast__img}
-                src={`${url}${profile_path}`}
-                alt={name}
-                width="200"
-              />
+              {profile_path ? (
+                <img
+                  className={styles.cast__img}
+                  src={`${url}${profile_path}`}
+                  alt={name}
+                  width="200"
+                />
+              ) : (
+                <img
+                  className={styles.cast__img}
+                  src={avatar}
+                  alt={name}
+                  width="200"
+                />
+              )}
               <p className={styles.cast__name}>{name}</p>
               <p className={styles.cast__character}>Character:</p>
               <p className={styles.cast__hero}>{character}</p>

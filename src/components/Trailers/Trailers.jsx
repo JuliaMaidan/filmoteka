@@ -37,8 +37,8 @@ const Trailers = ({ id }) => {
                 <ReactPlayer
                   url={`https://www.youtube.com/watch?v=${key}`}
                   controls
-                  width="900px"
-                  height="500px"
+                  width="100%"
+                  height="100%"
                   className={styles.video__player}
                 />
               </>
