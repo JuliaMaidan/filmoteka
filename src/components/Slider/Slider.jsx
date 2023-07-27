@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // import styles from '../Trending/trending.module.scss';
 import { AiFillStar, AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
 import Buttons from '../Buttons/Buttons';
