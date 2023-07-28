@@ -24,42 +24,50 @@ const Trailers = ({ id }) => {
   return (
     <div className={styles.video__wrapper}>
       <p className={styles.video__title}>Trailers</p>
-      <ul className={styles.video}>
-        {videos.map(({ id, key, name }, index) => (
-          <li key={id} className={styles.video__item}>
-            {index === currentVideoIndex && (
-              <ReactPlayer
-                url={`https://www.youtube.com/watch?v=${key}`}
-                controls
-                // width="100%"
-                width="100%"
-                height="100%"
-                className={styles.video__player}
-              />
-            )}
-          </li>
-        ))}
-      </ul>
-      <div className={styles.video__btns}>
-        <button
-          className={styles.video__btn}
-          onClick={() =>
-            setCurrentVideoIndex(prevIndex =>
-              prevIndex > 0 ? prevIndex - 1 : videos.length - 1
-            )
-          }
-        >
-          <AiOutlineLeft size={36} className={styles.video__svg} />
-        </button>
-        <button
-          className={styles.video__btn}
-          onClick={() =>
-            setCurrentVideoIndex(prevIndex => (prevIndex + 1) % videos.length)
-          }
-        >
-          <AiOutlineRight size={36} className={styles.video__svg} />
-        </button>
-      </div>
+      {videos.length === 0 ? (
+        <p>We don't have any reviews for this movie.</p>
+      ) : (
+        <>
+          <ul className={styles.video}>
+            {videos.map(({ id, key, name }, index) => (
+              <li key={id} className={styles.video__item}>
+                {index === currentVideoIndex && (
+                  <ReactPlayer
+                    url={`https://www.youtube.com/watch?v=${key}`}
+                    controls
+                    // width="100%"
+                    width="100%"
+                    height="100%"
+                    className={styles.video__player}
+                  />
+                )}
+              </li>
+            ))}
+          </ul>
+          <div className={styles.video__btns}>
+            <button
+              className={styles.video__btn}
+              onClick={() =>
+                setCurrentVideoIndex(prevIndex =>
+                  prevIndex > 0 ? prevIndex - 1 : videos.length - 1
+                )
+              }
+            >
+              <AiOutlineLeft size={36} className={styles.video__svg} />
+            </button>
+            <button
+              className={styles.video__btn}
+              onClick={() =>
+                setCurrentVideoIndex(
+                  prevIndex => (prevIndex + 1) % videos.length
+                )
+              }
+            >
+              <AiOutlineRight size={36} className={styles.video__svg} />
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
