@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import logo from '../../images/logo/cinema.png';
 import MobileMenu from 'components/MobileMenu/MobileMenu';

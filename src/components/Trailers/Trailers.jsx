@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { getMovieVideos } from '../../services/fetchMovies';
 import ReactPlayer from 'react-player';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
