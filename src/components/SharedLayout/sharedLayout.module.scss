@@ -23,70 +23,32 @@ a {
     }
 }
 
-.header {
-    position: fixed;
-    top:0;
-    left:0;
-    right:0;
-    background: #0f101fd8;
-    font-size: 22px;
-    z-index: 1000;
-    
-
-    &__wrapper {
-        width: 1351px;
-        margin: 0 auto; 
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-
-.logo {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-
-    &__link {
-        color: #fafafa;
-
-        & span {
-            color: #F24B88;
-        }
-
-        &:hover {
-            color: #fafafa;
-                opacity: 0.7;
-            }
-    }
-}
-
-.nav{
-    display: flex;
-    gap: 16px;
-    font-size: 18px;
-
-    &__link {
-        color: #F2F2F2;
-
-        &:hover {
-            opacity: 0.7;
-        }
-    }
-}
-
 .up {
     position: fixed;
-    right: 60px;
-    bottom: 40px;
+    right: 10px;
+    bottom: 10px;
     border-radius: 50%;
-    width: 48px;
-    height: 48px;
+    width: 34px;
+    height: 34px;
     border: none;
     fill: #F24B88;
     fill: #fafafa;
     background-color: #fafafa21;
     animation: pulsate-bck 1000ms infinite;
+
+    @media (min-width: 768px) {
+        right: 20px;
+        bottom: 20px;
+        width: 40px;
+        height: 40px;
+    }
+
+    @media (min-width: 1400px) {
+        right: 60px;
+        bottom: 40px;
+        width: 48px;
+        height: 48px;
+    }
 
     &:hover {
         opacity: 0.9;
@@ -94,6 +56,15 @@ a {
 
     & svg {
         fill: inherit;
+        @media (min-width: 768px) {
+            width: 18px;
+            height: 18px;
+        }
+    
+        @media (min-width: 1400px) {
+            width: 20px;
+            height: 20px;
+        }
     }
 }
 

@@ -1,10 +1,12 @@
 .container {
     padding-block: 20px 40px;
+    width: 355px;
     margin: 0 auto;
     color: #fafafa;
 
     @media (min-width: 768px) {
         padding-block: 20px 40px;
+        width: 748px;
     }
 
     @media (min-width: 1400px) {

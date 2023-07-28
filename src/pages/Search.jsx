@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { getSearchedMovies } from '../services/fetchMovies';
-import { CiSearch } from 'react-icons/ci';
+// import { CiSearch } from 'react-icons/ci';
+import { BsSearch } from 'react-icons/bs';
 import NotFound from '../components/NotFound/NotFound';
 import PostersList from '../components/PostersList/PostersList';
 import Paginator from '../components/Paginator/Paginator';
@@ -68,6 +69,7 @@ const Search = () => {
 
   return (
     <div className={styles.container}>
+      <h1 className={styles.title}>Search by name</h1>
       <Formik
         initialValues={{ query: '' }}
         validationSchema={schema}
@@ -83,7 +85,7 @@ const Search = () => {
               // onChange={handleChange}
             />
             <button type="submit" className={styles.search__btn}>
-              <CiSearch className={styles.search__svg} size={22} />
+              <BsSearch className={styles.search__svg} />
             </button>
             <ErrorMessage
               name="query"

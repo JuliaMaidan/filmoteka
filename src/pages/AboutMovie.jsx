@@ -88,6 +88,14 @@ const AboutMovie = () => {
 
   const rating = (vote_average * 10).toFixed();
 
+  let similarMovies = 0;
+  if (window.innerWidth < 1400) {
+    similarMovies = similar.slice(0, 5);
+  } else {
+    similarMovies = similar.slice(0, 6);
+  }
+  console.log(similarMovies);
+
   return (
     <div>
       {isLoading && <Loader />}
@@ -180,8 +188,8 @@ const AboutMovie = () => {
       </div>
       <Reviews id={id} />
       <div className={styles.similar}>
-        <p className={styles.title}>Similar movies</p>
-        <PostersList movies={similar.slice(0, 6)} />
+        <p className={styles.similar__title}>Similar movies</p>
+        <PostersList movies={similarMovies} />
       </div>
     </div>
   );

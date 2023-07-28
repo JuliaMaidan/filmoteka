@@ -4,20 +4,39 @@
     padding: 0;
 
     &__wrapper {
-        width: 1351px;
+        width: 355px;
         margin: 0 auto;
         color: #fafafa;
-        margin-bottom: 100px;
+
+        @media (min-width: 768px) {
+            width: 748px;
+        }
+    
+        @media (min-width: 1400px) {
+            width: 1351px;
+        }
     }
 
     &__title {
-        margin-top: 70px;
-        margin-bottom: 24px;
-        font-size: 24px;
+        margin-top: 40px;
+        margin-bottom: 18px;
+        font-size: 18px;
         font-weight: bold;
         letter-spacing: 0.04rem;
         color: #fafafa;
         opacity: 0.9;
+    
+        @media (min-width: 768px) {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+    
+        @media (min-width: 1400px) {
+            margin-top: 70px;
+            margin-bottom: 24px;
+            font-size: 24px;
+        }
     }
 
     &__item {
@@ -25,50 +44,93 @@
         box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
         border-radius: 5px;
         background-color: #957ead36;
-        padding-inline: 24px;
-        padding-block: 14px;
+        padding-inline: 18px;
+        padding-block: 10px;
         position: relative;
+
+        @media (min-width: 768px) {
+            padding-inline: 24px;
+            padding-block: 14px;
+        }
+    
     }
 
     &__author {
-        font-size: 16px;
+        font-size: 12px;
         margin-bottom: 2px;
         font-weight: bold;
         letter-spacing: 0.04rem;
         opacity: 0.9;
         margin-top: 0;
+
+        @media (min-width: 768px) {
+            font-size: 14px;
+        }
+    
+        @media (min-width: 1400px) {
+            font-size: 16px;
+        }
     }
 
     &__text {
-        font-size: 14px;
+        font-size: 10px;
         margin-top: 12px;
         opacity: 0.7;
         letter-spacing: 0.04rem;
         line-height: 1.4;
+
+        @media (min-width: 768px) {
+            font-size: 12px;
+        }
+    
+        @media (min-width: 1400px) {
+            font-size: 14px;
+        }
     }
 
     &__date {
-        font-size: 12px;
+        font-size: 8px;
         opacity: 0.9;
         letter-spacing: 0.04rem;
         border-top: 1px solid #fafafa;
         padding-top: 4px;
         display: inline;
+
+        @media (min-width: 768px) {
+            font-size: 10px;
+        }
+    
+        @media (min-width: 1400px) {
+            font-size: 12px;
+        }
     }
 
     &__btn {
         position: absolute;
-        right: 24px;
-        bottom: 20px;
+        right: 12px;
+        bottom: 12px;
         border: 1px solid #fafafa;
         background-color: transparent;
         opacity: 0.9;
         color: #fafafa;
-        padding: 5px;
-        padding-inline: 10px;
-        font-size: 10px;
+        padding: 4px;
+        padding-inline: 8px;
+        font-size: 8px;
         letter-spacing: 0.04rem;
         border-radius: 7px;
+
+        @media (min-width: 768px) {
+            padding: 5px;
+            padding-inline: 10px;
+            font-size: 10px;
+            right: 14px;
+            bottom: 14px;
+        }
+    
+        @media (min-width: 1400px) {
+            right: 24px;
+            bottom: 20px;
+        }
 
         &:hover {
             opacity: 0.6;

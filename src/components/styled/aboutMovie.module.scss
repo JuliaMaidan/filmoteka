@@ -19,20 +19,18 @@ button {
 .backdrop {
     padding-inline: 10px;
     padding-block: 20px;
-    margin-top: 60px;
+    margin-top: 44px;
     color:#fafafa;
     background-color: rgba(46, 3, 47, 0.345);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
 
     @media (min-width: 768px) {
-        padding-inline: 30px;
         padding-block: 30px;
-        margin-top: 60px;
+        margin-top: 54px;
     }
 
     @media (min-width: 1400px) {
-        padding-inline: 120px;
         padding-block: 60px;
         margin-top: 60px;
     }
@@ -44,7 +42,7 @@ button {
 
     @media (min-width: 768px) {
         display: block;
-        width: 768px;
+        width: 748px;
         display: flex;
         gap: 30px;
     }
@@ -315,17 +313,39 @@ button {
 }
 
 .similar {
-    width: 1351px;
-    margin-inline: auto;
-    margin-bottom: 60px;
+    width: 355px;
+    margin: 0 auto;
+    color: #fafafa;
+    margin-bottom: 100px;
 
-    & .title {
-        margin-top: 70px;
-        margin-bottom: 24px;
-        font-size: 24px;
+    @media (min-width: 768px) {
+        width: 748px;
+    }
+
+    @media (min-width: 1400px) {
+        width: 1351px;
+    }
+
+    &__title {
+        margin-top: 40px;
+        margin-bottom: 18px;
+        font-size: 18px;
         font-weight: bold;
         letter-spacing: 0.04rem;
         color: #fafafa;
         opacity: 0.9;
+    
+        @media (min-width: 768px) {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+    
+        @media (min-width: 1400px) {
+            margin-top: 70px;
+            margin-bottom: 24px;
+            font-size: 24px;
+        }
     }
+
 }

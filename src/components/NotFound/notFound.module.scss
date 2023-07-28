@@ -2,17 +2,39 @@
     background-image: url('../../images/bg/0_QwKiGz7AzOir17Aj.png');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 400px;
-    width: 1351px;
+    background-size: 300px;
+    width: 355px;
     margin: 0 auto;
-    height: 500px;
-    margin-top: 30px;
+    height: 375px;
+
+    @media (min-width: 768px) {
+        background-size: 350px;
+        width: 748px;
+        height: 460px;
+    }
+
+    @media (min-width: 1400px) {
+        background-size: 400px;
+        width: 1351px;
+        height: 500px;
+        margin-top: 30px;
+    }
 
     & p {
-        font-size: 16px;
+        font-size: 10px;
         text-align: center;
-        padding-top: 470px;
+        padding-top: 340px;
         opacity: 0.6;
         letter-spacing: 0.14rem;
+
+        @media (min-width: 768px) {
+            font-size: 12px;
+            padding-top: 420px;
+        }
+    
+        @media (min-width: 1400px) {
+            font-size: 16px;
+            padding-top: 470px;
+        }
     }
 }

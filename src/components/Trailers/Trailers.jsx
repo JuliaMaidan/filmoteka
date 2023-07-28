@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { getMovieVideos } from '../../services/fetchMovies';
 import ReactPlayer from 'react-player';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
@@ -26,22 +26,16 @@ const Trailers = ({ id }) => {
       <p className={styles.video__title}>Trailers</p>
       <ul className={styles.video}>
         {videos.map(({ id, key, name }, index) => (
-          <li
-            key={id}
-            // className={index === currentVideoIndex ? styles.active : ""}
-            className={styles.video__item}
-          >
+          <li key={id} className={styles.video__item}>
             {index === currentVideoIndex && (
-              <>
-                {/* <p className={styles.video__name}>{name}</p> */}
-                <ReactPlayer
-                  url={`https://www.youtube.com/watch?v=${key}`}
-                  controls
-                  width="100%"
-                  height="100%"
-                  className={styles.video__player}
-                />
-              </>
+              <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${key}`}
+                controls
+                // width="100%"
+                width="100%"
+                height="100%"
+                className={styles.video__player}
+              />
             )}
           </li>
         ))}
