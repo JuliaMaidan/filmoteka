@@ -1,0 +1,25 @@
+.footer {
+    // position:;
+    width: 100%;
+    // bottom: 0;
+    height: 70px;
+    background-color: #957ead33;
+    color: #fafafa;
+    opacity: 0.8;
+    margin-top: auto;
+    margin-bottom: 0;
+
+
+    &__wrapper {
+        width: 355px;
+        margin-inline: auto;
+
+        @media (min-width: 768px) {
+            width: 748px;
+        }
+
+        @media (min-width: 1400px) {
+            width: 1351px;
+        }
+    }
+}

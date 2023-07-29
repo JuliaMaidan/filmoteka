@@ -3,6 +3,7 @@ import { Suspense, useState, useEffect } from 'react';
 import styles from './sharedLayout.module.scss';
 import { SlArrowUp } from 'react-icons/sl';
 import Header from 'components/Header/Header';
+// import Footer from 'components/Footer/Footer';
 
 const SharedLayout = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -40,6 +41,7 @@ const SharedLayout = () => {
           <SlArrowUp />
         </button>
       )}
+      {/* <Footer /> */}
     </div>
   );
 };
