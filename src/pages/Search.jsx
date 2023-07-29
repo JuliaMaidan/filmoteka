@@ -12,6 +12,7 @@ import styles from '../components/styled/search.module.scss';
 import Loader from '../components/Loader/Loader';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Search = () => {
   const navigate = useNavigate();
@@ -45,9 +46,11 @@ const Search = () => {
     navigate(`/search?query=${query}`);
     try {
       const searchedMovies = await getSearchedMovies(query, currentPage);
+      if (searchedMovies.results.length === 0) {
+        toast(`Movies with name '${query}' weren't founded.`);
+      }
       setMovies(searchedMovies.results);
       setTotalPages(searchedMovies.total_pages);
-      // setIsLoading(true);
     } catch (error) {
       console.log(error);
       setSearchParams('');
@@ -69,6 +72,21 @@ const Search = () => {
 
   return (
     <div className={styles.container}>
+      <div>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            className: 'toaster',
+            style: {
+              // padding: '4px',
+              color: 'white',
+              // fontSize: 12,
+              // width: 180,
+              backgroundColor: '#e38181',
+            },
+          }}
+        />
+      </div>
       <h1 className={styles.title}>Search by name</h1>
       <Formik
         initialValues={{ query: '' }}

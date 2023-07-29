@@ -1,51 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import styles from '../Trending/trending.module.scss';
 import { AiFillStar, AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
 import Buttons from '../Buttons/Buttons';
 import styles from './slider.module.scss';
 
 const MovieSlider = ({ movies, title, addToFavorites, addToWatchingList }) => {
-  const [currentPage, setCurrentPage] = useState(0);
-  const moviesPerPage = 4;
-  const totalPages = Math.ceil(movies.length / moviesPerPage);
-
-  const handleNextPage = () => {
-    setCurrentPage(prevPage => prevPage + 1);
-  };
-
-  const handlePreviousPage = () => {
-    setCurrentPage(prevPage => prevPage - 1);
-  };
-
-  const startIndex = currentPage * moviesPerPage;
-  const visibleMovies = movies.slice(startIndex, startIndex + moviesPerPage);
   // const [currentPage, setCurrentPage] = useState(0);
-  // const [moviesPerPage, setMoviesPerPage] = useState(4);
-  // const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setWindowWidth(window.innerWidth);
-  //   };
-
-  //   handleResize(); // Викликаємо при монтуванні компонента, щоб встановити початкове значення
-  //   window.addEventListener('resize', handleResize); // Додаємо обробник події 'resize'
-
-  //   return () => {
-  //     window.removeEventListener('resize', handleResize); // Видаляємо обробник події 'resize' при демонтажі компонента
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   if (windowWidth < 768) {
-  //     setMoviesPerPage(1);
-  //   } else if (windowWidth < 1400) {
-  //     setMoviesPerPage(2);
-  //   } else {
-  //     setMoviesPerPage(4);
-  //   }
-  // }, [windowWidth]);
-
+  // const moviesPerPage = 4;
   // const totalPages = Math.ceil(movies.length / moviesPerPage);
 
   // const handleNextPage = () => {
@@ -58,9 +19,48 @@ const MovieSlider = ({ movies, title, addToFavorites, addToWatchingList }) => {
 
   // const startIndex = currentPage * moviesPerPage;
   // const visibleMovies = movies.slice(startIndex, startIndex + moviesPerPage);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [moviesPerPage, setMoviesPerPage] = useState(4);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    handleResize(); // Викликаємо при монтуванні компонента, щоб встановити початкове значення
+    window.addEventListener('resize', handleResize); // Додаємо обробник події 'resize'
+
+    return () => {
+      window.removeEventListener('resize', handleResize); // Видаляємо обробник події 'resize' при демонтажі компонента
+    };
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth < 768) {
+      setMoviesPerPage(1);
+    } else if (windowWidth < 1400) {
+      setMoviesPerPage(2);
+    } else {
+      setMoviesPerPage(4);
+    }
+  }, [windowWidth]);
+
+  const totalPages = Math.ceil(movies.length / moviesPerPage);
+
+  const handleNextPage = () => {
+    setCurrentPage(prevPage => prevPage + 1);
+  };
+
+  const handlePreviousPage = () => {
+    setCurrentPage(prevPage => prevPage - 1);
+  };
+
+  const startIndex = currentPage * moviesPerPage;
+  const visibleMovies = movies.slice(startIndex, startIndex + moviesPerPage);
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2 className={styles.caption}>{title}</h2>
       <div className={styles.slider}>
         <div className={styles.paginator}>
@@ -95,6 +95,7 @@ const MovieSlider = ({ movies, title, addToFavorites, addToWatchingList }) => {
                     className={styles.movies__img}
                     src={`https://image.tmdb.org/t/p/w780/${backdrop_path}`}
                     alt={title}
+                    width="300"
                   />
                   <p className={styles.movies__name}>{title || name}</p>
                   <div className={styles.wrapper}>
@@ -118,6 +119,7 @@ const MovieSlider = ({ movies, title, addToFavorites, addToWatchingList }) => {
                   className={styles.movies__img}
                   src={`https://image.tmdb.org/t/p/w780/${backdrop_path}`}
                   alt={title}
+                  width="300"
                 />
               </div>
             )

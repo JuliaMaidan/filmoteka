@@ -37,7 +37,9 @@ const Reviews = ({ id }) => {
       <p className={styles.reviews__title}>Reviews</p>
       <ul className={styles.reviews}>
         {reviews.length === 0 && (
-          <p>We don't have any reviews for this movie.</p>
+          <p className="notfound_text">
+            We don't have any reviews for this movie.
+          </p>
         )}
         {reviews.map(({ id, author, content, created_at }) => (
           <li className={styles.reviews__item} key={id}>

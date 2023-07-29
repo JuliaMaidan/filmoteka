@@ -2,6 +2,7 @@ import styles from './posterList.module.scss';
 import { Link } from 'react-router-dom';
 import { BsInfo } from 'react-icons/bs';
 import { AiFillStar } from 'react-icons/ai';
+import poster from '../../images/noimage.png';
 
 const PostersList = ({ movies }) => {
   return (
@@ -10,12 +11,27 @@ const PostersList = ({ movies }) => {
         {movies.map(({ id, title, poster_path, vote_average }) => (
           <li className={styles.movies__item} key={id}>
             <div className={styles.movies__wrapper}>
-              <img
+              {poster_path ? (
+                <img
+                  className={styles.movies__img}
+                  src={`https://image.tmdb.org/t/p/w780/${poster_path}`}
+                  alt={title}
+                  // height="300"
+                />
+              ) : (
+                <img
+                  className={styles.movies__img}
+                  src={poster}
+                  alt={title}
+                  // height="300"
+                />
+              )}
+              {/* <img
                 src={`https://image.tmdb.org/t/p/w780/${poster_path}`}
                 alt={title}
                 // height="300"
                 className={styles.movies__img}
-              />
+              /> */}
               <p className={styles.movies__name}>{title}</p>
               <button className={styles.movies__btn}>
                 <Link to={`/movie/${id}`}>

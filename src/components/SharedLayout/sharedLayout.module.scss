@@ -25,8 +25,8 @@ a {
 
 .up {
     position: fixed;
-    right: 10px;
-    bottom: 10px;
+    right: 12px;
+    bottom: 24px;
     border-radius: 50%;
     width: 34px;
     height: 34px;
@@ -38,7 +38,7 @@ a {
 
     @media (min-width: 768px) {
         right: 20px;
-        bottom: 20px;
+        bottom: 30px;
         width: 40px;
         height: 40px;
     }

@@ -25,7 +25,9 @@ const Trailers = ({ id }) => {
     <div className={styles.video__wrapper}>
       <p className={styles.video__title}>Trailers</p>
       {videos.length === 0 ? (
-        <p>We don't have any reviews for this movie.</p>
+        <p className="notfound_text">
+          We don't have any reviews for this movie.
+        </p>
       ) : (
         <>
           <ul className={styles.video}>

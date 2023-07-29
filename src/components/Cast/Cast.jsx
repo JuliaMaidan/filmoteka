@@ -73,13 +73,13 @@ const Cast = ({ id }) => {
         {showMoreButton && (
           <button className={styles.cast__more} onClick={showMoreHeroes}>
             Show more
-            <BiSolidDownArrow className={styles.cast__svg} size={11} />
+            <BiSolidDownArrow className={styles.cast__svg} />
           </button>
         )}
         {visibleHeroes > 9 && (
           <button className={styles.cast__hide} onClick={hideHeroes}>
             Hide
-            <BiSolidUpArrow className={styles.cast__svg} size={11} />
+            <BiSolidUpArrow className={styles.cast__svg} />
           </button>
         )}
       </div>
