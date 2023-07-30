@@ -47,7 +47,7 @@ const Search = () => {
     try {
       const searchedMovies = await getSearchedMovies(query, currentPage);
       if (searchedMovies.results.length === 0) {
-        toast(`Movies with name '${query}' weren't founded.`);
+        toast(`Movie with name '${query}' doesn't exist.`);
       }
       setMovies(searchedMovies.results);
       setTotalPages(searchedMovies.total_pages);
@@ -78,10 +78,7 @@ const Search = () => {
           toastOptions={{
             className: 'toaster',
             style: {
-              // padding: '4px',
               color: 'white',
-              // fontSize: 12,
-              // width: 180,
               backgroundColor: '#e38181',
             },
           }}
