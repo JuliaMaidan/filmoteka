@@ -13,9 +13,32 @@
     height: 29px;
     position: relative;
     fill: #fafafa;
-opacity: 0.9;
+    opacity: 0.9;
+    transition: all .3s ease-in;
+
+    &:before {
+        content: attr(data-tooltip);
+        position: absolute;
+        background-color: #fdd5fc;
+        top: -38px;
+        font-size: 12px;
+        width: 60px;
+        left: -20px;
+        padding: 2px 4px;
+        border-radius: 4px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in, visibility 0.3s ease-in;
+    }
+
+    &:hover::before {
+        opacity: 1;
+        visibility: visible;
+    }
+    
     &:hover {
-        opacity: 0.6;
+        border: 1px solid #a1687d;
+        fill: #a1687d;
     }
 
     &__svg {
@@ -26,4 +49,17 @@ opacity: 0.9;
         width: 16px;
         height: 16px;
     }
+}
+
+.text {
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.03rem;
+    line-height: 1.25;
+    color: #dedede;
+    text-align: center;
+}
+
+.img {
+    width: 100px;
 }

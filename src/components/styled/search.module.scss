@@ -39,6 +39,7 @@
         background-color: #957ead6a;
         color: #fafafa;
         letter-spacing: 00.06rem;
+        transition: all .3s ease-in;
 
         @media (min-width: 768px) {
             padding: 10px 20px;
@@ -64,6 +65,7 @@
         border-radius: 50px;
         background-color: #a894bea8;
         border: none;
+        transition: all .3s ease-in;
         
         @media (min-width: 768px) {
             width: 64px;

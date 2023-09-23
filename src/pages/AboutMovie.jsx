@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import * as React from 'react';
 import { useState, useRef, useEffect } from 'react';
 import { getMovieDetails, getSimilar } from '../services/fetchMovies';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
@@ -10,8 +11,13 @@ import Cast from '../components/Cast/Cast';
 import Trailers from '../components/Trailers/Trailers';
 import Reviews from '../components/Reviews/Reviews';
 import PostersList from '../components/PostersList/PostersList';
-import styles from '../components/styled/aboutMovie.module.scss';
 import Loader from '../components/Loader/Loader';
+import PropTypes from 'prop-types';
+import { Box, styled } from '@mui/system';
+import Modal from '@mui/material/Modal';
+import image from '../images/bg/bg.png';
+import { useSpring, animated } from '@react-spring/web';
+import styles from '../components/styled/aboutMovie.module.scss';
 
 const AboutMovie = () => {
   const { id } = useParams();
@@ -19,6 +25,24 @@ const AboutMovie = () => {
   const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef(null);
   const [similar, setSimilar] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState('');
+  const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -55,6 +79,18 @@ const AboutMovie = () => {
     });
   };
 
+  const handleAddToWatchingList = () => {
+    const resultMessage = addToWatchingList(Number(id));
+    setMessage(resultMessage);
+    setOpen(true);
+  };
+
+  const handleAddToFavorites = () => {
+    const resultMessage = addToFavorites(Number(id));
+    setMessage(resultMessage);
+    setOpen(true);
+  };
+
   const {
     backdrop_path,
     genres,
@@ -89,7 +125,7 @@ const AboutMovie = () => {
   const rating = (vote_average * 10).toFixed();
 
   let similarMovies = 0;
-  if (window.innerWidth < 1400) {
+  if (767 < windowWidth && windowWidth < 1400) {
     similarMovies = similar.slice(0, 5);
   } else {
     similarMovies = similar.slice(0, 6);
@@ -118,7 +154,7 @@ const AboutMovie = () => {
                 src={`${url}${poster_path}`}
                 alt=""
               />
-              <p className={styles.budget}>Budget: {budget}$</p>
+              {budget > 0 && <p className={styles.budget}>Budget: {budget}$</p>}
             </div>
             <div className={styles.info_wrapper}>
               <p className={styles.title}>
@@ -147,17 +183,35 @@ const AboutMovie = () => {
                 <div className={styles.btns_wrapper}>
                   <button
                     className={styles.btn}
-                    onClick={() => addToWatchingList(Number(id))}
+                    onClick={() => handleAddToWatchingList()}
+                    data-tooltip="Add to watch list"
                   >
                     <BsPlusLg className={styles.btn__svg} />
                   </button>
                   <button
                     className={styles.btn}
-                    onClick={() => addToFavorites(Number(id))}
+                    onClick={() => handleAddToFavorites()}
+                    data-tooltip="Add to favorites"
                   >
                     <AiOutlineHeart className={styles.btn__svg} />
                   </button>
                 </div>
+                <Modal
+                  aria-labelledby="spring-modal-title"
+                  open={open}
+                  onClose={handleClose}
+                  closeAfterTransition
+                  slots={{ backdrop: StyledBackdrop }}
+                >
+                  <Fade in={open}>
+                    <Box sx={style}>
+                      <h2 className={styles.text} id="spring-modal-title">
+                        {message}
+                      </h2>
+                      <img className={styles.img} src={image} alt="xx" />
+                    </Box>
+                  </Fade>
+                </Modal>
               </div>
               <i className={styles.tagline}>{tagline}</i>
               <p className={styles.desc}>Overview:</p>
@@ -189,10 +243,80 @@ const AboutMovie = () => {
       <Reviews id={id} />
       <div className={styles.similar}>
         <p className={styles.similar__title}>Similar movies</p>
-        <PostersList movies={similarMovies} />
+        {similarMovies.length > 0 ? (
+          <PostersList movies={similarMovies} />
+        ) : (
+          <p className="notfound_text">We don't have any similar movies.</p>
+        )}
       </div>
     </div>
   );
 };
 
 export default AboutMovie;
+
+const Backdrop = React.forwardRef((props, ref) => {
+  const { open, ...other } = props;
+  return <Fade ref={ref} in={open} {...other} />;
+});
+
+Backdrop.propTypes = {
+  open: PropTypes.bool.isRequired,
+};
+
+const StyledBackdrop = styled(Backdrop)`
+  z-index: -1;
+  position: fixed;
+  inset: 0;
+  background-color: rgb(0 0 0 / 0.5);
+  -webkit-tap-highlight-color: transparent;
+`;
+
+const Fade = React.forwardRef(function Fade(props, ref) {
+  const { in: open, children, onEnter, onExited, ...other } = props;
+  const style = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: open ? 1 : 0 },
+    onStart: () => {
+      if (open && onEnter) {
+        onEnter(null, true);
+      }
+    },
+    onRest: () => {
+      if (!open && onExited) {
+        onExited(null, true);
+      }
+    },
+  });
+
+  return (
+    <animated.div ref={ref} style={style} {...other}>
+      {children}
+    </animated.div>
+  );
+});
+
+Fade.propTypes = {
+  children: PropTypes.element.isRequired,
+  in: PropTypes.bool,
+  onEnter: PropTypes.func,
+  onExited: PropTypes.func,
+};
+
+const style = theme => ({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 240,
+  borderRadius: '12px',
+  padding: '10px 26px',
+  // backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
+  // backgroundColor: '#fdd5fc',
+  background:
+    'linear-gradient(90deg, rgba(110,60,143,1) 0%, rgba(141,106,184,1) 64%, rgba(113,122,190,1) 100%)',
+  boxShadow: 16,
+  display: 'flex',
+  gap: '14px',
+  alignItems: 'center',
+});

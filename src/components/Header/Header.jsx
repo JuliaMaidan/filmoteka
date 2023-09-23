@@ -1,11 +1,25 @@
-// import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import logo from '../../images/logo/cinema.png';
 import MobileMenu from 'components/MobileMenu/MobileMenu';
 import styles from './header.module.scss';
 
 const Header = () => {
-  const isMobile = window.innerWidth < 1400;
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <header className={styles.header}>
@@ -21,7 +35,7 @@ const Header = () => {
             Filmoteka
           </Link>
         </div>
-        {isMobile ? (
+        {windowWidth < 768 ? (
           <MobileMenu />
         ) : (
           <nav className={styles.nav}>

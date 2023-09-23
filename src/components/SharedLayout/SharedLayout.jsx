@@ -3,7 +3,7 @@ import { Suspense, useState, useEffect } from 'react';
 import styles from './sharedLayout.module.scss';
 import { SlArrowUp } from 'react-icons/sl';
 import Header from 'components/Header/Header';
-// import Footer from 'components/Footer/Footer';
+import Footer from 'components/Footer/Footer';
 
 const SharedLayout = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,15 +33,17 @@ const SharedLayout = () => {
   return (
     <div className={styles.layout}>
       <Header />
-      <Suspense>
-        <Outlet />
-      </Suspense>
-      {isVisible && (
-        <button type="button" className={styles.up} onClick={scrollToTop}>
-          <SlArrowUp />
-        </button>
-      )}
-      {/* <Footer /> */}
+      <main>
+        <Suspense>
+          <Outlet />
+        </Suspense>
+        {isVisible && (
+          <button type="button" className={styles.up} onClick={scrollToTop}>
+            <SlArrowUp />
+          </button>
+        )}
+      </main>
+      <Footer />
     </div>
   );
 };

@@ -33,7 +33,10 @@ const PostersList = ({ movies }) => {
                 className={styles.movies__img}
               /> */}
               <p className={styles.movies__name}>{title}</p>
-              <button className={styles.movies__btn}>
+              <button
+                className={styles.movies__btn}
+                data-tooltip="Show more info"
+              >
                 <Link to={`/movie/${id}`}>
                   <BsInfo size={36} className={styles.movies__svg} />
                 </Link>

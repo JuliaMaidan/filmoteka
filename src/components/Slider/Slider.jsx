@@ -1,24 +1,9 @@
 import React, { useState, useEffect } from 'react';
-// import styles from '../Trending/trending.module.scss';
 import { AiFillStar, AiOutlineRight, AiOutlineLeft } from 'react-icons/ai';
 import Buttons from '../Buttons/Buttons';
 import styles from './slider.module.scss';
 
 const MovieSlider = ({ movies, title, addToFavorites, addToWatchingList }) => {
-  // const [currentPage, setCurrentPage] = useState(0);
-  // const moviesPerPage = 4;
-  // const totalPages = Math.ceil(movies.length / moviesPerPage);
-
-  // const handleNextPage = () => {
-  //   setCurrentPage(prevPage => prevPage + 1);
-  // };
-
-  // const handlePreviousPage = () => {
-  //   setCurrentPage(prevPage => prevPage - 1);
-  // };
-
-  // const startIndex = currentPage * moviesPerPage;
-  // const visibleMovies = movies.slice(startIndex, startIndex + moviesPerPage);
   const [currentPage, setCurrentPage] = useState(0);
   const [moviesPerPage, setMoviesPerPage] = useState(4);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -28,11 +13,11 @@ const MovieSlider = ({ movies, title, addToFavorites, addToWatchingList }) => {
       setWindowWidth(window.innerWidth);
     };
 
-    handleResize(); // Викликаємо при монтуванні компонента, щоб встановити початкове значення
-    window.addEventListener('resize', handleResize); // Додаємо обробник події 'resize'
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize); // Видаляємо обробник події 'resize' при демонтажі компонента
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -113,7 +98,7 @@ const MovieSlider = ({ movies, title, addToFavorites, addToWatchingList }) => {
                     id={id}
                   />
                 </div>
-
+                {/* <div className={styles.movies__info_visible}> */}
                 <p className={styles.movies__name}>{title || name}</p>
                 <img
                   className={styles.movies__img}
@@ -121,6 +106,7 @@ const MovieSlider = ({ movies, title, addToFavorites, addToWatchingList }) => {
                   alt={title}
                   width="300"
                 />
+                {/* </div> */}
               </div>
             )
           )}

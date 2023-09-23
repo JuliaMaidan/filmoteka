@@ -1,11 +1,28 @@
+import { useEffect, useState } from 'react';
 import styles from './hero.module.scss';
 
 const Hero = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   let text = '';
 
-  if (window.innerWidth < 768) {
+  if (windowWidth < 768) {
     text = 'Stay up-to-date with the latest releases and discover hidden gems.';
-  } else if (window.innerWidth < 1400) {
+  } else if (windowWidth < 1400) {
     text =
       'Stay up-to-date with the latest releases and discover hidden gems. Start your cinematic journey today!';
   } else {

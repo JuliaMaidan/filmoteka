@@ -3,6 +3,11 @@ body {
     // background: #1C121F;
     background: #090d19ed;
     margin: 0;
+    // min-height: 100vh;
+}
+
+main {
+    min-height: calc(100vh - 110px);
 }
 
 ul {
@@ -35,6 +40,7 @@ a {
     fill: #fafafa;
     background-color: #fafafa21;
     animation: pulsate-bck 1000ms infinite;
+    transition: all .3s ease-in;
 
     @media (min-width: 768px) {
         right: 20px;

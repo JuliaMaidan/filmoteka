@@ -12,6 +12,21 @@ const Paginator = ({ currentPage, handlePageChange, count }) => {
     components: {
       MuiPagination: {
         styleOverrides: {
+          // root: {
+          //   display: 'flex',
+          //   justifyContent: 'center',
+          //   margin: 'auto',
+          //   '& .MuiPaginationItem-root': {
+          //     color: '#fafafa',
+          //     opacity: 0.9,
+          //     borderColor: '#957ead36',
+          //   },
+          //   '& .MuiPaginationItem-page.Mui-selected': {
+          //     backgroundColor: '#957ead36',
+          //     borderColor: '#fafafa7e',
+          //     color: '#fafafa',
+          //   },
+          // },
           root: {
             display: 'flex',
             justifyContent: 'center',
@@ -20,9 +35,13 @@ const Paginator = ({ currentPage, handlePageChange, count }) => {
               color: '#fafafa',
               opacity: 0.9,
               borderColor: '#957ead36',
+              '&:not(.Mui-selected):hover': {
+                borderColor: '#fafafa7e',
+              },
             },
             '& .MuiPaginationItem-page.Mui-selected': {
-              backgroundColor: '#957ead36',
+              backgroundColor:
+                '#957ead36' /* Колір для обраної сторінки залишається незмінним */,
               borderColor: '#fafafa7e',
               color: '#fafafa',
             },

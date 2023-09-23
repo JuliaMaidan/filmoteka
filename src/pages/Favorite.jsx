@@ -38,7 +38,6 @@ const Favorite = () => {
     setFavoriteMovies(updatedFavorites);
     localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     console.log(id);
-
     setFavoritesUpdated(!favoritesUpdated);
   };
 

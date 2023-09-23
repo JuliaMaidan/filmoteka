@@ -1,21 +1,13 @@
 
 .hero{
-    // background:radial-gradient(circle, rgba(147, 198, 234, 0.159) 0%, rgba(9, 9, 21, 0.819) 100%), url('../../images/bg/hero.jpg');
     background: radial-gradient(circle, rgba(98, 63, 111, 0.359) 0%, rgba(29, 3, 32, 0.819) 100%), url('../../images/bg/hero.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 
-    // @media (min-width: 768px) {
-    // }
-
-    // @media (min-width: 1400px) {
-    // }
-
     &__wrapper {
         backdrop-filter: blur(1.5px);
         padding-block: 300px 40px;
-        // padding-inline: 20px;
 
         @media (min-width: 768px) {
             padding-block: 400px 40px;
@@ -41,7 +33,7 @@
 
         @media (min-width: 768px) {
             font-size: 12px;
-            width: 748px;
+            width: 620px;
         }
     
         @media (min-width: 1400px) {

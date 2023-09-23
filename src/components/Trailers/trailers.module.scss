@@ -119,13 +119,25 @@
     }
 
     &__btn {
-        border: none;
-        fill: #fafafa;
         opacity: 0.9;
         height: 150px;
         width: 22px;
-        background-color: #957ead36;
+        background-color: #957ead17;
+        border: none;
+        fill: #fafafab8;
         position: relative;
+        transition: all .3s ease-in;
+
+        &:disabled {
+            fill: #fafafa68;
+            background-color: #957ead0a;
+            pointer-events: none;
+        }
+
+        &:hover {
+            background-color: #9f7dc62d;
+            fill: #fafafa;
+        }
 
         @media (min-width: 768px) {
             height: 320px;

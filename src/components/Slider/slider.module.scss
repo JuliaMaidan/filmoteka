@@ -6,7 +6,6 @@
 
     @media (min-width: 768px) {
         padding-block: 40px 0;
-        // padding-inline: 30px;
         width: 748px;
     }
 
@@ -38,20 +37,23 @@
     position: relative;
 
     &_btn {
-        background-color: #957ead15;
+        background-color: #957ead17;
         border: none;
-        fill: #fafafa;
+        fill: #fafafab8;
         height: 180px;
         width: 22px;
         position: relative;
+        transition: all .3s ease-in;
 
         &:hover {
-            fill: #fafafa68;
+            background-color: #9f7dc62d;
+            fill: #fafafa;
         }
 
         &:disabled {
             fill: #fafafa68;
-            
+            background-color: #957ead0a;
+            pointer-events: none;
         }
     }
 
@@ -88,13 +90,13 @@
     flex-wrap: nowrap;
     gap: 10px;
     justify-content: center;
-    background-color: #957ead15;
 
     &__item {
         z-index: 100;
         position: relative;
         width: 300px;
         height: 180px;
+        cursor: zoom-in;
 
         @media (min-width: 768px) {
             width: 340px;
@@ -128,18 +130,18 @@
 }
 
 .movies__info {
-    display: none;
     z-index: 100;
     position: absolute;
-    z-index: 100;
     width: 330px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: 0.4s ease-in;
     padding: 0;
     color: #fafafa;
     background-color: #251f30fe;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in, visibility 0.3s ease-in;
 
     @media (min-width: 768px) {
         width: 340px;
@@ -151,8 +153,9 @@
 }
 
 .movies__item:hover .movies__info {
-    display: block;
     position: absolute;
+    opacity: 1;
+    visibility: visible;
 }
 
 
@@ -194,4 +197,3 @@
 .movies__svg {
     fill: rgba(255, 153, 0, 0.913);
 }
-

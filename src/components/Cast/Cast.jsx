@@ -39,7 +39,9 @@ const Cast = ({ id }) => {
     };
     fetchCast();
   }, [id]);
+
   const url = `https://image.tmdb.org/t/p/w780/`;
+
   return (
     <div className={styles.cast__wrapper}>
       <p className={styles.cast__title}>Starring</p>

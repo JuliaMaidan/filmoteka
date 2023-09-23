@@ -26,7 +26,7 @@ const Trailers = ({ id }) => {
       <p className={styles.video__title}>Trailers</p>
       {videos.length === 0 ? (
         <p className="notfound_text">
-          We don't have any reviews for this movie.
+          We don't have any trailers for this movie.
         </p>
       ) : (
         <>
@@ -37,7 +37,6 @@ const Trailers = ({ id }) => {
                   <ReactPlayer
                     url={`https://www.youtube.com/watch?v=${key}`}
                     controls
-                    // width="100%"
                     width="100%"
                     height="100%"
                     className={styles.video__player}
@@ -54,6 +53,7 @@ const Trailers = ({ id }) => {
                   prevIndex > 0 ? prevIndex - 1 : videos.length - 1
                 )
               }
+              disabled={videos.length === 1 || currentVideoIndex === 0}
             >
               <AiOutlineLeft size={36} className={styles.video__svg} />
             </button>
@@ -63,6 +63,9 @@ const Trailers = ({ id }) => {
                 setCurrentVideoIndex(
                   prevIndex => (prevIndex + 1) % videos.length
                 )
+              }
+              disabled={
+                videos.length === 1 || currentVideoIndex === videos.length - 1
               }
             >
               <AiOutlineRight size={36} className={styles.video__svg} />

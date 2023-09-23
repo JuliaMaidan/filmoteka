@@ -64,7 +64,7 @@ const Search = () => {
   const schema = yup.object().shape({
     query: yup
       .string()
-      .matches(/^[a-zA-Z\s'-]*$/, 'Please, use only letters, -, ".')
+      .matches(/^[A-Za-z0-9-]+$/, 'Please, dont use symbols.')
       .min(3)
       .max(30)
       .required(),

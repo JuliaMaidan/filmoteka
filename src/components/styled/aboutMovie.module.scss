@@ -191,13 +191,15 @@ button {
     fill: #fafafa;
     opacity: 0.9;
     margin-right: 30px;
+    transition: all .3s ease-in;
 
     @media (min-width: 768px) {
         margin-right: 40px;
     }
 
-&:hover {   
-        opacity: 0.6;
+    &:hover {
+        opacity: 1;
+        background-color: #fafafa18;
     }
 }
 
@@ -228,9 +230,31 @@ button {
     position: relative;
     fill: #fafafa;
     opacity: 0.9;
+    transition: all .3s ease-in;
+
+    &:before {
+        content: attr(data-tooltip);
+        position: absolute;
+        background-color: #d7d5d7;
+        top: -38px;
+        font-size: 12px;
+        width: 60px;
+        left: -20px;
+        padding: 2px 4px;
+        border-radius: 4px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in, visibility 0.3s ease-in;
+    }
+    
+    &:hover::before {
+        opacity: 1;
+        visibility: visible;
+    }
 
     &:hover {
-        opacity: 0.6;
+        opacity: 1;
+        background-color: #fafafa18;
     }
 
     &__svg {
@@ -348,4 +372,17 @@ button {
         }
     }
 
+}
+
+.text {
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 0.03rem;
+    line-height: 1.25;
+    color: #dedede;
+    text-align: center;
+}
+
+.img {
+    width: 100px;
 }
